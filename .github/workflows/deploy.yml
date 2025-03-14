@@ -1,4 +1,4 @@
-name: Projeto FIAP CI/CD
+name: projeto automatizado completo etapa 3 cicd deploy aplicacao
 
 on:
   push:
@@ -23,15 +23,15 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.0.0
-          
+
       - name: Terraform Init
         run: terraform init
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
 
-  #     - name: Terraform Apply
-  #       run: terraform apply -auto-approve
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
 
   build-and-push-docker:
     needs: deploy
@@ -55,7 +55,7 @@ jobs:
         run: |
           docker build -t teddy-application-repository:$GITHUB_SHA .
           docker tag teddy-application-repository:$GITHUB_SHA 423831492861.dkr.ecr.us-east-1.amazonaws.com/teddy-application-repository:$GITHUB_SHA
-          docker push 4619-2045-5367.dkr.ecr.us-east-1.amazonaws.com/teddy-application-repository:$GITHUB_SHA
+          docker push 423831492861.dkr.ecr.us-east-1.amazonaws.com/teddy-application-repository:$GITHUB_SHA
 
       - name: Clean up old images from Amazon ECR
         run: |
