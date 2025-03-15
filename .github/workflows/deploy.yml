@@ -23,7 +23,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.0.0
-
+      #Desabilita o ambiente
       # - name: Terraform Init
       #   run: terraform init
 
